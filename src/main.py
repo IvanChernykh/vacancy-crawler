@@ -2,24 +2,8 @@ import asyncio
 
 from constants import QUERY_PARAMS
 from parser import run_parser
-from utils import generate_url, get_options_list
-
-
-def print_summary(keyword: str, exp_level: str):
-    print(
-        f"""
-Chosen options:
-
-Category: {keyword}
-Experience: {exp_level} and below
-"""
-    )
-
-
-def ask_option(title: str, arr: list[str]) -> str:
-    print(title + get_options_list(arr))
-    idx = int(input("Enter a number: "))
-    return arr[idx - 1]
+from ui import ask_option, confirm, print_summary
+from utils import generate_url
 
 
 def start():
@@ -34,7 +18,7 @@ def start():
 
         print_summary(keyword, exp_level)
 
-        if input("Start parsing? (y/n)\n").lower() == "y":
+        if confirm("Start parsing?"):
             url = generate_url(keyword, exp_level)
 
             asyncio.run(run_parser(url))
