@@ -4,7 +4,6 @@ import asyncio
 
 from constants import VACANCY_LIST_SELECTORS, VACANCY_DETAIL_SELECTORS, PYTHON_KEYWORDS
 
-url = "https://djinni.co/jobs/?primary_keyword=Python&exp_level=no_exp&exp_level=1y"
 
 should_recommend = ["django", "drf", "postgres", "django rest framework"]
 
@@ -58,7 +57,7 @@ async def parse_page_list(page: Page, data: dict):
         await parse_vacancy_page(page, data, item)
 
 
-async def run(url: str):
+async def run_parser(url: str):
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
         page = await browser.new_page()
@@ -66,7 +65,7 @@ async def run(url: str):
         page_size = 15
         total_pages = 0
 
-        print(f"➡️ Opening {url}")
+        print(f"Opening {url}")
         await page.goto(url, timeout=60000)
         print("✔ Page loaded")
 
@@ -95,6 +94,3 @@ async def run(url: str):
         print(recommended_vacancies)
 
         await browser.close()
-
-
-asyncio.run(run(url))

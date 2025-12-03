@@ -35,7 +35,7 @@ PYTHON_KEYWORDS = [
     "sqlalchemy",
 ]
 
-query_params = {
+QUERY_PARAMS: dict[str, list] = {
     "primary_keyword": ["Python", "JavaScript", "React.js", "Fullstack", "Node.js"],
     "exp_level": [
         "no_exp",
@@ -49,18 +49,6 @@ query_params = {
         "8y",
         "9y",
         "10y",
-    ],
-    "employment": ["remote", "parttime", "office"],
-    "company_type": ["agency", "outsource", "outstaff", "product", "startup"],
-    "english_level": [
-        "no_english",
-        "basic",
-        "pre",
-        "intermediate",
-        "upper",
-        "fluent",
-        "proficient",
-        "native",
     ],
     "salary": [500, 10000],  # step - 500
 }
